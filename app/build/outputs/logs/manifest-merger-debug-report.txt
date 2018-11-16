@@ -1,0 +1,162 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:2:1-25:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\8f732717663c454a91f95683403fd736\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\af304894a5a10913927354888863143d\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\a1b4627d60709bbda58ccc8b7f430045\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\2c527b96bd53ab926b7d67b3bcec0e41\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\a4b1ccdae766ffc12ed4d31a7ad377ea\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\182f8cb5de089008c9f0c466f34f1a1d\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\26be997158c3ca308746e61d9c8a61ab\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\74c8d0f7c19b5092dd21c9a49913060e\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\c7b2ce5e1de0e48421cc5b3f557ee76b\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\093c06324cd2a2dd34f59aa934de75a7\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\ec370912095e951c5606b378175c46d8\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\56a9381b4984e01a486bb857fb40fc7c\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\8067b1c2f514e33261859156cf315c61\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\d309ef694eb3732ee5945a52b9e3c2ad\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\728d032ea93d42745cf3139e218cf39e\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\3ee3f9a0359870926a40e236919b23f4\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\723b81b61db211cf29cf869dcba5ad66\AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\d7aa114147b3e1ae418381256ce5a386\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\c9309c99f302dab9c262b0605f1b9905\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\25ed3547e9de8b62a43b82d87b0f97fe\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\efb32f25010c31ab0c625bed5f5f908a\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\b8afefb61d42d32ae658333e25a8a9f7\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\c4ac9097e20a8ceb41b0bb0bd297682b\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\63de76492a5144da3b03412111c5a98d\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\cc7815296f2132bfd3211a8792e7369a\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\7778ba5c497914bcc7e7d15ec7dacdfd\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\b76167634dd47dcb580a2ede08ce1507\AndroidManifest.xml:17:1-22:12
+INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:2:1-25:12
+	package
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:3:5-39
+		INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:5:5-30
+		INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:4:5-28
+		INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:7:5-97
+	android:name
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:7:22-78
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:8:5-70
+	android:name
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:8:22-68
+uses-permission#android.permission.DISABLE_KEYGUARD
+ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:9:5-91
+	android:name
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:9:22-72
+application
+ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:11:5-23:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\af304894a5a10913927354888863143d\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\af304894a5a10913927354888863143d\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\3ee3f9a0359870926a40e236919b23f4\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\3ee3f9a0359870926a40e236919b23f4\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\723b81b61db211cf29cf869dcba5ad66\AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\723b81b61db211cf29cf869dcba5ad66\AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\3ee3f9a0359870926a40e236919b23f4\AndroidManifest.xml:22:18-91
+	android:supportsRtl
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:14:9-35
+	android:label
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:13:9-41
+	android:allowBackup
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:12:9-35
+	android:theme
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:15:9-40
+activity#com.example.sinvoicedemo.MainActivity
+ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:16:9-22:20
+	android:name
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:16:19-47
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:17:13-21:29
+action#android.intent.action.MAIN
+ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:18:17-69
+	android:name
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:18:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:20:17-77
+	android:name
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml:20:27-74
+uses-sdk
+INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml
+INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\8f732717663c454a91f95683403fd736\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\8f732717663c454a91f95683403fd736\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\af304894a5a10913927354888863143d\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\af304894a5a10913927354888863143d\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\a1b4627d60709bbda58ccc8b7f430045\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\a1b4627d60709bbda58ccc8b7f430045\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\2c527b96bd53ab926b7d67b3bcec0e41\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\2c527b96bd53ab926b7d67b3bcec0e41\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\a4b1ccdae766ffc12ed4d31a7ad377ea\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\a4b1ccdae766ffc12ed4d31a7ad377ea\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\182f8cb5de089008c9f0c466f34f1a1d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\182f8cb5de089008c9f0c466f34f1a1d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\26be997158c3ca308746e61d9c8a61ab\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\26be997158c3ca308746e61d9c8a61ab\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\74c8d0f7c19b5092dd21c9a49913060e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\74c8d0f7c19b5092dd21c9a49913060e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\c7b2ce5e1de0e48421cc5b3f557ee76b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\c7b2ce5e1de0e48421cc5b3f557ee76b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\093c06324cd2a2dd34f59aa934de75a7\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\093c06324cd2a2dd34f59aa934de75a7\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\ec370912095e951c5606b378175c46d8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\ec370912095e951c5606b378175c46d8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\56a9381b4984e01a486bb857fb40fc7c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\56a9381b4984e01a486bb857fb40fc7c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\8067b1c2f514e33261859156cf315c61\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\8067b1c2f514e33261859156cf315c61\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\d309ef694eb3732ee5945a52b9e3c2ad\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\d309ef694eb3732ee5945a52b9e3c2ad\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\728d032ea93d42745cf3139e218cf39e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\728d032ea93d42745cf3139e218cf39e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\3ee3f9a0359870926a40e236919b23f4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\3ee3f9a0359870926a40e236919b23f4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\723b81b61db211cf29cf869dcba5ad66\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\723b81b61db211cf29cf869dcba5ad66\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\d7aa114147b3e1ae418381256ce5a386\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\d7aa114147b3e1ae418381256ce5a386\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\c9309c99f302dab9c262b0605f1b9905\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\c9309c99f302dab9c262b0605f1b9905\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\25ed3547e9de8b62a43b82d87b0f97fe\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\25ed3547e9de8b62a43b82d87b0f97fe\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\efb32f25010c31ab0c625bed5f5f908a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\efb32f25010c31ab0c625bed5f5f908a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\b8afefb61d42d32ae658333e25a8a9f7\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\b8afefb61d42d32ae658333e25a8a9f7\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\c4ac9097e20a8ceb41b0bb0bd297682b\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\c4ac9097e20a8ceb41b0bb0bd297682b\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\63de76492a5144da3b03412111c5a98d\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\63de76492a5144da3b03412111c5a98d\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\cc7815296f2132bfd3211a8792e7369a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\cc7815296f2132bfd3211a8792e7369a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\7778ba5c497914bcc7e7d15ec7dacdfd\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\7778ba5c497914bcc7e7d15ec7dacdfd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\b76167634dd47dcb580a2ede08ce1507\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Sunshine\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\b76167634dd47dcb580a2ede08ce1507\AndroidManifest.xml:20:5-44
+INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml
+INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml
+		ADDED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Pro_andriod\SinVoice1\app\src\main\AndroidManifest.xml

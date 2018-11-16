@@ -1,0 +1,124 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/regstate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/info"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/input_char" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/start_reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_reg" />
+
+        <Button
+            android:id="@+id/stop_reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="停止接收" />
+
+        <TextView
+            android:id="@+id/regtext"
+            android:layout_width="wrap_content"
+            android:layout_height="62dp"
+            android:scrollbars="vertical"
+            android:singleLine="false"
+            android:text="recognised text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/start_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始发送" />
+
+        <Button
+            android:id="@+id/stop_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="停止发送" />
+
+        <EditText
+		    android:id="@+id/playtext"
+		    android:layout_width="fill_parent"   
+		    android:layout_height="wrap_content"   
+		    android:text="@string/init_str"/>
+        <!--TextView
+            android:id="@+id/playtext"
+            android:layout_width="wrap_content"
+            android:layout_height="62dp"
+            android:scrollbars="vertical"
+            android:singleLine="false"
+            android:text="play text" /-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal" >
+
+        <CheckBox
+            android:id="@+id/fread_from_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="read from file" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/back_debug_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="backup log info" />
+
+        <Button
+            android:id="@+id/clear_debug_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="clear all log info" />
+    </LinearLayout>
+
+</LinearLayout>
