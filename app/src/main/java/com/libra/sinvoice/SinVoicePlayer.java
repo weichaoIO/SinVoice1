@@ -1,11 +1,11 @@
 /*
  * Copyright (C) 2013 gujicheng
- * 
+ *
  * Licensed under the GPL License Version 2.0;
  * you may not use this file except in compliance with the License.
- * 
+ *
  * If you have any question, please contact me.
- * 
+ *
  *************************************************************************
  **                   Author information                                **
  *************************************************************************
@@ -20,21 +20,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.media.AudioFormat;
-import android.text.TextUtils;
 
 import com.libra.sinvoice.Buffer.BufferData;
 
 public class SinVoicePlayer implements Encoder.Listener, Encoder.Callback, PcmPlayer.Listener, PcmPlayer.Callback {
     private final static String TAG = "SinVoicePlayer";
 
-    private final static int STATE_START = 1;
-    private final static int STATE_STOP = 2;
-    private final static int STATE_PENDING = 3;
+    private final static int STATE_START = 1;   // 启动状态
+    private final static int STATE_STOP = 2;    // 结束状态
+    private final static int STATE_PENDING = 3; // 挂起、等待状态
 
-    private final static int DEFAULT_GEN_DURATION = 100;
+    private final static String CODE_BOOK = Common.DEFAULT_CODE_BOOK;
+    private final static int SAMPLE_RATE = Common.DEFAULT_SAMPLE_RATE;
+    private final static int BUFFER_SIZE = Common.DEFAULT_BUFFER_SIZE;
+    private final static int BUFFER_COUNT = Common.DEFAULT_BUFFER_COUNT;
+    private final static boolean REPEAT = Common.DEFAULT_REPEAT;
+    private final static int GEN_DURATION = Common.DEFAULT_GEN_DURATION;
+    private final static int MUTE_INTERVAL = Common.DEFAULT_MUTE_INTERVAL;
 
-    private String mCodeBook;
-    private List<Integer> mCodes = new ArrayList<Integer>();//存放编码的arraylist
+    private String mCodeBook = CODE_BOOK;
+    private List<Integer> mCodes = new ArrayList<>();// 存放编码的arraylist
 
     private Encoder mEncoder;
     private PcmPlayer mPlayer;
@@ -45,33 +50,21 @@ public class SinVoicePlayer implements Encoder.Listener, Encoder.Callback, PcmPl
     private Thread mPlayThread;
     private Thread mEncodeThread;
 
-    //监听器接口
-    public static interface Listener {
-        void onPlayStart();
-
-        void onPlayEnd();
-    }
-
-    //默认编码本
     public SinVoicePlayer() {
-        this(Common.DEFAULT_CODE_BOOK);
+        this(CODE_BOOK);
     }
 
-    //自定义编码本，传入默认的采样率、缓存大小等
     public SinVoicePlayer(String codeBook) {
-        this(codeBook, Common.DEFAULT_SAMPLE_RATE, Common.DEFAULT_BUFFER_SIZE, Common.DEFAULT_BUFFER_COUNT);
+        this(codeBook, SAMPLE_RATE, BUFFER_SIZE, BUFFER_COUNT);
     }
 
-    //自定义编码本、采样率、缓存大小等
     public SinVoicePlayer(String codeBook, int sampleRate, int bufferSize, int buffCount) {
         mState = STATE_STOP;
         mBuffer = new Buffer(buffCount, bufferSize);
-
-        mEncoder = new Encoder(this, sampleRate, SinGenerator.BITS_16, bufferSize);//十六位采样
+        mEncoder = new Encoder(this, sampleRate, Common.BITS_16, bufferSize);
         mEncoder.setListener(this);
         mPlayer = new PcmPlayer(this, sampleRate, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT, bufferSize);
         mPlayer.setListener(this);
-
         setCodeBook(codeBook);
     }
 
@@ -80,53 +73,35 @@ public class SinVoicePlayer implements Encoder.Listener, Encoder.Callback, PcmPl
     }
 
     public void setCodeBook(String codeBook) {
-//        if (!TextUtils.isEmpty(codeBook) && codeBook.length() < Encoder.getMaxCodeCount() - 1) {
-            mCodeBook = codeBook;
-//        }
+        mCodeBook = codeBook;
     }
-
-    //将要传递的文本信息转换成ASCII编码
-    private boolean convertTextToCodes(String text) {
-        byte tmp = -1;
-
-        for(byte b: text.getBytes()){
-            if(tmp == b){
-                mCodes.add(128);
-                tmp = -1;
-            } else {
-                mCodes.add((int)b);
-                tmp = b;
-            }
-
-        }
-       return true;
- }
 
     public void play(final String text) {
-        play(text, false, 0);
+        play(text, REPEAT, GEN_DURATION, MUTE_INTERVAL);
     }
 
-    public void play(final String text, final boolean repeat, final int muteInterval) {
-        if (STATE_STOP == mState && null != mCodeBook && convertTextToCodes(text)) {
-            mState = STATE_PENDING;//挂起、等待状态
+    public void play(final String text, final boolean repeat, final int genDuration, final int muteInterval) {
+        if (STATE_STOP == mState && null != mCodeBook) {
+            mState = STATE_PENDING;
+
+            mCodes = convertTextToCodes(text);
 
             mPlayThread = new Thread() {
                 @Override
                 public void run() {
+                    LogHelper.d(TAG, "play start");
                     mPlayer.start();
-                }//run方法在new的时候并未执行，只有在start犯法执行时调用run方法的时候方才执行
+                    LogHelper.d(TAG, "play end");
+                }
             };
-            //play的线程启动
-            if (null != mPlayThread) {
-                mPlayThread.start();
-            }
+            mPlayThread.start();
 
             mEncodeThread = new Thread() {
                 @Override
                 public void run() {
                     do {
                         LogHelper.d(TAG, "encode start");
-                        mEncoder.encode(mCodes, DEFAULT_GEN_DURATION, muteInterval);
+                        mEncoder.encode(mCodes, genDuration, muteInterval);
                         LogHelper.d(TAG, "encode end");
 
                         mEncoder.stop();
@@ -134,17 +109,39 @@ public class SinVoicePlayer implements Encoder.Listener, Encoder.Callback, PcmPl
                     stopPlayer();
                 }
             };
-            //编码的enocde线程启动
-            if (null != mEncodeThread) {
-                mEncodeThread.start();
-            }
+            mEncodeThread.start();
 
-            LogHelper.d(TAG, "play");
-            mState = STATE_START;//启动状态
+            mState = STATE_START;
         }
     }
 
+    /**
+     * 将要传递的文本信息转换成ASCII编码
+     */
+    private List<Integer> convertTextToCodes(String text) {
+        LogHelper.d(TAG, "convertTextToCodes(" + text + ")");
+        final List<Integer> list = new ArrayList<>();
+
+        byte tmp = -1;
+        final byte[] bytes = text.getBytes();
+        for (byte b : bytes) {
+            if (tmp == b) {
+                // 连续相同的两个字符，第二个置为128
+                list.add(Common.DEFAULT_TOKEN_SAME_AS_BEFORE);
+                tmp = -1;
+            } else {
+                list.add((int) b);
+                tmp = b;
+            }
+        }
+
+        LogHelper.d(TAG, "encrypt result convert:" + list.toString());// 2, 33, 34, 35, 36, 48, 49, 50, 51, 65, 66, 67, 68, 97, 98, 99, 100, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 128, 0, 3, 62, 102, 105, 66, 16, 5, 58, 67, 101, 73, 105, 49, 95, 107, 28, 74, 73, 55, 78, 70, 110, 65, 59, 1, 104, 98, 100, 84, 96, 105, 109, 10
+
+        return list;
+    }
+
     public void stop() {
+        LogHelper.d(TAG, "stop()");
         if (STATE_START == mState) {
             mState = STATE_PENDING;
 
@@ -159,17 +156,16 @@ public class SinVoicePlayer implements Encoder.Listener, Encoder.Callback, PcmPl
                     mEncodeThread = null;
                 }
             }
-
             LogHelper.d(TAG, "force stop end");
         }
     }
 
     private void stopPlayer() {
+        LogHelper.d(TAG, "stopPlayer()");
         if (mEncoder.isStoped()) {
             mPlayer.stop();
         }
 
-        // put end buffer
         mBuffer.putFull(BufferData.getEmptyBuffer());
 
         if (null != mPlayThread) {
@@ -188,11 +184,12 @@ public class SinVoicePlayer implements Encoder.Listener, Encoder.Callback, PcmPl
 
     @Override
     public void onStartEncode() {
-        LogHelper.d(TAG, "onStartGen");
+        LogHelper.d(TAG, "onStartEncode()");
     }
 
     @Override
     public void freeEncodeBuffer(BufferData buffer) {
+        LogHelper.d(TAG, "freeEncodeBuffer()");
         if (null != buffer) {
             mBuffer.putFull(buffer);
         }
@@ -200,25 +197,30 @@ public class SinVoicePlayer implements Encoder.Listener, Encoder.Callback, PcmPl
 
     @Override
     public BufferData getEncodeBuffer() {
+        LogHelper.d(TAG, "getEncodeBuffer()");
         return mBuffer.getEmpty();
     }
 
     @Override
     public void onEndEncode() {
+        LogHelper.d(TAG, "onEndEncode()");
     }
 
     @Override
     public BufferData getPlayBuffer() {
+        LogHelper.d(TAG, "getPlayBuffer()");
         return mBuffer.getFull();
     }
 
     @Override
     public void freePlayData(BufferData data) {
+        LogHelper.d(TAG, "freePlayData()");
         mBuffer.putEmpty(data);
     }
 
     @Override
     public void onPlayStart() {
+        LogHelper.d(TAG, "onPlayStart()");
         if (null != mListener) {
             mListener.onPlayStart();
         }
@@ -226,9 +228,15 @@ public class SinVoicePlayer implements Encoder.Listener, Encoder.Callback, PcmPl
 
     @Override
     public void onPlayStop() {
+        LogHelper.d(TAG, "onPlayStop()");
         if (null != mListener) {
             mListener.onPlayEnd();
         }
     }
 
+    public interface Listener {
+        void onPlayStart();
+
+        void onPlayEnd();
+    }
 }

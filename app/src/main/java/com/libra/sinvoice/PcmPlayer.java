@@ -1,11 +1,11 @@
 /*
  * Copyright (C) 2013 gujicheng
- * 
+ *
  * Licensed under the GPL License Version 2.0;
  * you may not use this file except in compliance with the License.
- * 
+ *
  * If you have any question, please contact me.
- * 
+ *
  *************************************************************************
  **                   Author information                                **
  *************************************************************************
@@ -23,31 +23,22 @@ import com.libra.sinvoice.Buffer.BufferData;
 
 public class PcmPlayer {
     private final static String TAG = "PcmPlayer";
+
     private final static int STATE_START = 1;
     private final static int STATE_STOP = 2;
 
     private int mState;
-    private AudioTrack mAudio;
+
+    private Callback mCallback;
+    private AudioTrack mAudioTrack;
     private long mPlayedLen;
     private Listener mListener;
-    private Callback mCallback;
-
-    //pcmplayer监听器接口
-    public static interface Listener {
-        void onPlayStart();
-        void onPlayStop();
-    }
-
-    public static interface Callback {
-        BufferData getPlayBuffer();
-
-        void freePlayData(BufferData data);
-    }
 
     public PcmPlayer(Callback callback, int sampleRate, int channel, int format, int bufferSize) {
-        mCallback = callback;
-        mAudio = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate, channel, format, bufferSize, AudioTrack.MODE_STREAM);
         mState = STATE_STOP;
+
+        mCallback = callback;
+        mAudioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate, channel, format, bufferSize, AudioTrack.MODE_STREAM);
         mPlayedLen = 0;
     }
 
@@ -56,32 +47,27 @@ public class PcmPlayer {
     }
 
     public void start() {
-        LogHelper.d(TAG, "start");
-        if (STATE_STOP == mState && null != mAudio) {
+        LogHelper.d(TAG, "start()");
+        if (STATE_STOP == mState && null != mAudioTrack) {
             mPlayedLen = 0;
-
             if (null != mCallback) {
                 mState = STATE_START;
-                LogHelper.d(TAG, "start");
+
                 if (null != mListener) {
                     mListener.onPlayStart();
                 }
+
                 while (STATE_START == mState) {
-                    LogHelper.d(TAG, "start getbuffer");
-
-                    BufferData data = mCallback.getPlayBuffer();
-
+                    final BufferData data = mCallback.getPlayBuffer();
                     if (null != data) {
                         if (null != data.mData) {
-                            int len = mAudio.write(data.mData, 0, data.getFilledSize());
-
+                            int len = mAudioTrack.write(data.mData, 0, data.getFilledSize());
                             if (0 == mPlayedLen) {
-                                mAudio.play();
+                                mAudioTrack.play();
                             }
                             mPlayedLen += len;
                             mCallback.freePlayData(data);
                         } else {
-                            // it is the end of input, so need stop
                             LogHelper.d(TAG, "it is the end of input, so need stop");
                             break;
                         }
@@ -91,23 +77,35 @@ public class PcmPlayer {
                     }
                 }
 
-                if (null != mAudio) {
-                    mAudio.pause();
-                    mAudio.flush();
-                    mAudio.stop();
+                if (null != mAudioTrack) {
+                    mAudioTrack.pause();
+                    mAudioTrack.flush();
+                    mAudioTrack.stop();
                 }
-                mState = STATE_STOP;
+
                 if (null != mListener) {
                     mListener.onPlayStop();
                 }
-                LogHelper.d(TAG, "end");
+
+                mState = STATE_STOP;
             }
         }
     }
 
     public void stop() {
-        if (STATE_START == mState && null != mAudio) {
-            mState = STATE_STOP;
-        }
+        LogHelper.d(TAG, "stop()");
+        mState = STATE_STOP;
+    }
+
+    public interface Listener {
+        void onPlayStart();
+
+        void onPlayStop();
+    }
+
+    public interface Callback {
+        BufferData getPlayBuffer();
+
+        void freePlayData(BufferData data);
     }
 }

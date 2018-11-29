@@ -1,11 +1,11 @@
 /*
  * Copyright (C) 2013 gujicheng
- * 
+ *
  * Licensed under the GPL License Version 2.0;
  * you may not use this file except in compliance with the License.
- * 
+ *
  * If you have any question, please contact me.
- * 
+ *
  *************************************************************************
  **                   Author information                                **
  *************************************************************************
@@ -16,21 +16,24 @@
  */
 package com.libra.sinvoice;
 
-import android.text.TextUtils;
+import android.media.AudioFormat;
 
 import com.lib.utils.FFTRecognition;
 import com.libra.sinvoice.Buffer.BufferData;
 
-public class SinVoiceRecognition implements Record.Listener, Record.Callback, VoiceRecognition.Listener, VoiceRecognition.Callback ,FFTRecognition.Callback,FFTRecognition.Listener{
+public class SinVoiceRecognition implements Record.Listener, Record.Callback, FFTRecognition.Callback, FFTRecognition.Listener {
     private final static String TAG = "SinVoiceRecognition";
 
     private final static int STATE_START = 1;
     private final static int STATE_STOP = 2;
     private final static int STATE_PENDING = 3;
 
+    private final static int SAMPLE_RATE = Common.DEFAULT_SAMPLE_RATE;
+    private final static int BUFFER_SIZE = Common.DEFAULT_BUFFER_SIZE;
+    private final static int BUFFER_COUNT = Common.DEFAULT_BUFFER_COUNT;
+
     private Buffer mBuffer;
     private Record mRecord;
-    //private VoiceRecognition mRecognition;
     private FFTRecognition mRecognition;
 
     private Thread mRecordThread;
@@ -38,50 +41,28 @@ public class SinVoiceRecognition implements Record.Listener, Record.Callback, Vo
     private int mState;
     private Listener mListener;
 
-    private String mCodeBook;
-    private int mMaxCodeIndex;
-
-    public static interface Listener {
-        void onRecognitionStart();
-
-        void onRecognition(char ch);
-
-        void onRecognitionEnd();
-    }
+    private int lastRecognition = -1;
 
     public SinVoiceRecognition() {
-        this(Common.DEFAULT_CODE_BOOK);
+        this(SAMPLE_RATE, BUFFER_SIZE, BUFFER_COUNT);
     }
 
-    public SinVoiceRecognition(String codeBook) {
-        this(codeBook, Common.DEFAULT_SAMPLE_RATE, Common.DEFAULT_BUFFER_SIZE, Common.DEFAULT_BUFFER_COUNT);
-    }
-
-    public SinVoiceRecognition(String codeBook, int sampleRate, int bufferSize, int bufferCount) {
+    public SinVoiceRecognition(int sampleRate, int bufferSize, int bufferCount) {
         mState = STATE_STOP;
+
         mBuffer = new Buffer(bufferCount, bufferSize);
-
-        mRecord = new Record(this, sampleRate, Record.CHANNEL_1, Record.BITS_16, bufferSize);
+        mRecord = new Record(this, sampleRate, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, bufferSize);
         mRecord.setListener(this);
-        mRecognition = new FFTRecognition(this, sampleRate, Record.CHANNEL_1, Record.BITS_16);
+        mRecognition = new FFTRecognition(this);
         mRecognition.setListener(this);
-
-        mMaxCodeIndex = Encoder.getMaxCodeCount() - 2;
-
-        setCodeBook(codeBook);
     }
 
     public void setListener(Listener listener) {
         mListener = listener;
     }
 
-    public void setCodeBook(String codeBook) {
-        if (!TextUtils.isEmpty(codeBook) && codeBook.length() <= mMaxCodeIndex) {
-            mCodeBook = codeBook;
-        }
-    }
-
     public void start() {
+        LogHelper.d(TAG, "start()");
         if (STATE_STOP == mState) {
             mState = STATE_PENDING;
 
@@ -91,35 +72,26 @@ public class SinVoiceRecognition implements Record.Listener, Record.Callback, Vo
                     mRecognition.start();
                 }
             };
-            if (null != mRecognitionThread) {
-                mRecognitionThread.start();
-            }
+            mRecognitionThread.start();
 
             mRecordThread = new Thread() {
                 @Override
                 public void run() {
                     mRecord.start();
-
-                    LogHelper.d(TAG, "record thread end");
-
-                    LogHelper.d(TAG, "stop recognition start");
                     stopRecognition();
-                    LogHelper.d(TAG, "stop recognition end");
                 }
             };
-            if (null != mRecordThread) {
-                mRecordThread.start();
-            }
+            mRecordThread.start();
 
             mState = STATE_START;
         }
     }
 
     private void stopRecognition() {
+        LogHelper.d(TAG, "stopRecognition()");
         mRecognition.stop();
 
-        // put end buffer
-        BufferData data = new BufferData(0);
+        final BufferData data = new BufferData(0);
         mBuffer.putFull(data);
 
         if (null != mRecognitionThread) {
@@ -136,6 +108,7 @@ public class SinVoiceRecognition implements Record.Listener, Record.Callback, Vo
     }
 
     public void stop() {
+        LogHelper.d(TAG, "stop()");
         if (STATE_START == mState) {
             mState = STATE_PENDING;
 
@@ -158,17 +131,18 @@ public class SinVoiceRecognition implements Record.Listener, Record.Callback, Vo
 
     @Override
     public void onStartRecord() {
-        LogHelper.d(TAG, "start record");
+        LogHelper.d(TAG, "onStartRecord()");
     }
 
     @Override
     public void onStopRecord() {
-        LogHelper.d(TAG, "stop record");
+        LogHelper.d(TAG, "onStopRecord()");
     }
 
     @Override
     public BufferData getRecordBuffer() {
-        BufferData buffer = mBuffer.getEmpty();
+        LogHelper.d(TAG, "getRecordBuffer()");
+        final BufferData buffer = mBuffer.getEmpty();
         if (null == buffer) {
             LogHelper.e(TAG, "get null empty buffer");
         }
@@ -177,6 +151,7 @@ public class SinVoiceRecognition implements Record.Listener, Record.Callback, Vo
 
     @Override
     public void freeRecordBuffer(BufferData buffer) {
+        LogHelper.d(TAG, "freeRecordBuffer()");
         if (null != buffer) {
             if (!mBuffer.putFull(buffer)) {
                 LogHelper.e(TAG, "put full buffer failed");
@@ -186,7 +161,8 @@ public class SinVoiceRecognition implements Record.Listener, Record.Callback, Vo
 
     @Override
     public BufferData getRecognitionBuffer() {
-        BufferData buffer = mBuffer.getFull();
+        LogHelper.d(TAG, "getRecognitionBuffer()");
+        final BufferData buffer = mBuffer.getFull();
         if (null == buffer) {
             LogHelper.e(TAG, "get null full buffer");
         }
@@ -195,6 +171,7 @@ public class SinVoiceRecognition implements Record.Listener, Record.Callback, Vo
 
     @Override
     public void freeRecognitionBuffer(BufferData buffer) {
+        LogHelper.d(TAG, "freeRecognitionBuffer()");
         if (null != buffer) {
             if (!mBuffer.putEmpty(buffer)) {
                 LogHelper.e(TAG, "put empty buffer failed");
@@ -204,29 +181,18 @@ public class SinVoiceRecognition implements Record.Listener, Record.Callback, Vo
 
     @Override
     public void onStartRecognition() {
-        LogHelper.d(TAG, "start recognition");
+        LogHelper.d(TAG, "onStartRecognition()");
     }
 
-    private int lastRecognition = -1;
-    //
     @Override
     public void onRecognition(int ascii) {
-//        if (null != mListener) {
-//            if (Common.START_TOKEN == index) {
-//                mListener.onRecognitionStart();
-//            } else if (Common.STOP_TOKEN == index) {
-//                mListener.onRecognitionEnd();
-//            } else if (index > 0 && index <= mMaxCodeIndex) {
-//                mListener.onRecognition(mCodeBook.charAt(index - 1));
-//            }
-//        }
-        if (ascii != lastRecognition){
-            if(ascii == 128){
-                mListener.onRecognition((char)lastRecognition);
+        LogHelper.d(TAG, "onRecognition(" + ascii + ")");
+        if (ascii != lastRecognition) {
+            if (ascii == Common.DEFAULT_TOKEN_SAME_AS_BEFORE) {
+                mListener.onRecognition((char) lastRecognition);
                 LogHelper.d(TAG, "recognition:" + lastRecognition);
-
-            }else{
-                mListener.onRecognition((char)ascii);
+            } else {
+                mListener.onRecognition((char) ascii);
                 LogHelper.d(TAG, "recognition:" + ascii);
             }
             lastRecognition = ascii;
@@ -235,9 +201,14 @@ public class SinVoiceRecognition implements Record.Listener, Record.Callback, Vo
 
     @Override
     public void onStopRecognition() {
-        LogHelper.d(TAG, "stop recognition");
+        LogHelper.d(TAG, "onStopRecognition()");
     }
 
-//    public void
+    public interface Listener {
+        void onRecognitionStart();
 
+        void onRecognition(char ch);
+
+        void onRecognitionEnd();
+    }
 }

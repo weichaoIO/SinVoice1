@@ -1,11 +1,11 @@
 /*
  * Copyright (C) 2013 gujicheng
- * 
+ *
  * Licensed under the GPL License Version 2.0;
  * you may not use this file except in compliance with the License.
- * 
+ *
  * If you have any question, please contact me.
- * 
+ *
  *************************************************************************
  **                   Author information                                **
  *************************************************************************
@@ -22,12 +22,9 @@ import com.libra.sinvoice.Buffer.BufferData;
 
 public class Encoder implements SinGenerator.Listener, SinGenerator.Callback {
     private final static String TAG = "Encoder";
+
     private final static int STATE_ENCODING = 1;
     private final static int STATE_STOPED = 2;
-
-    // index 0, 1, 2, 3, 4, 5, 6
-    // sampling point Count 31, 28, 25, 22, 19, 15, 10， 11 * ？ = 44100
-//    private final static int[] CODE_FREQUENCY = { 1422, 1575, 1764, 2004, 2321, 2940, 4410 };
 
     private int mState;
 
@@ -35,28 +32,11 @@ public class Encoder implements SinGenerator.Listener, SinGenerator.Callback {
     private Listener mListener;
     private Callback mCallback;
 
-    public static interface Listener {
-        void onStartEncode();
-
-        void onEndEncode();
-    }
-
-    public static interface Callback {
-        void freeEncodeBuffer(BufferData buffer);
-
-        BufferData getEncodeBuffer();
-    }
-
     public Encoder(Callback callback, int sampleRate, int bits, int bufferSize) {
-        mCallback = callback;
         mState = STATE_STOPED;
+        mCallback = callback;
         mSinGenerator = new SinGenerator(this, sampleRate, bits, bufferSize);
         mSinGenerator.setListener(this);
-    }
-
-    //frequency 频率 通过传入的index，得到字符对应的频率
-    public static int getCodeFrequency(int index){
-        return (int) (Common.BASE_FREQUENCY + (double)index * 44100 / 2048);
     }
 
     public void setListener(Listener listener) {
@@ -64,16 +44,20 @@ public class Encoder implements SinGenerator.Listener, SinGenerator.Callback {
     }
 
     public final static int getMaxCodeCount() {
-        return (int)((20000.0 - (double)Common.BASE_FREQUENCY) / 44100.0 * 2048.0);
+        LogHelper.d(TAG, "getMaxCodeCount()");
+        return (int) ((20000.0 - Common.BASE_FREQUENCY) / 44100.0 * 2048.0);
+    }
+
+    /**
+     * 获取字符对应的频率
+     */
+    public static int getCodeFrequency(int index) {
+        return (int) (Common.BASE_FREQUENCY + (double) index * 44100 / 2048);
     }
 
     public final boolean isStoped() {
+        LogHelper.d(TAG, "isStoped()");
         return (STATE_STOPED == mState);
-    }
-
-    // content of input from 0 (to (CODE_FREQUENCY.length-1)
-    public void encode(List<Integer> codes, int duration) {
-        encode(codes, duration, 0);
     }
 
     public void encode(List<Integer> codes, int duration, int muteInterval) {
@@ -85,11 +69,16 @@ public class Encoder implements SinGenerator.Listener, SinGenerator.Callback {
             }
 
             mSinGenerator.start();
+
+            final int maxCodeCount = getMaxCodeCount();
+            LogHelper.d(TAG, "maxCodeCount:" + maxCodeCount);
+            final StringBuilder stringBuilder = new StringBuilder();
             for (int ascii : codes) {
                 if (STATE_ENCODING == mState) {
-                    LogHelper.d(TAG, "encode:" + ascii);
-                    if (ascii >= 0 && ascii < getMaxCodeCount()) {
-                        mSinGenerator.gen(getCodeFrequency(ascii), duration);
+                    if (ascii >= 0 && ascii < maxCodeCount) {
+                        final int codeFrequency = getCodeFrequency(ascii);
+                        stringBuilder.append(codeFrequency).append(" ");
+                        mSinGenerator.gen(codeFrequency, duration);
                     } else {
                         LogHelper.e(TAG, "code index error");
                     }
@@ -98,7 +87,7 @@ public class Encoder implements SinGenerator.Listener, SinGenerator.Callback {
                     break;
                 }
             }
-            // for mute
+            LogHelper.d(TAG, "codeFrequency:" + stringBuilder.toString());
             if (STATE_ENCODING == mState) {
                 mSinGenerator.gen(0, muteInterval);
             } else {
@@ -113,6 +102,7 @@ public class Encoder implements SinGenerator.Listener, SinGenerator.Callback {
     }
 
     public void stop() {
+        LogHelper.d(TAG, "stop()");
         if (STATE_ENCODING == mState) {
             mState = STATE_STOPED;
 
@@ -122,26 +112,41 @@ public class Encoder implements SinGenerator.Listener, SinGenerator.Callback {
 
     @Override
     public void onStartGen() {
-        LogHelper.d(TAG, "start gen codes");
+        LogHelper.d(TAG, "onStartGen()");
     }
 
     @Override
     public void onStopGen() {
-        LogHelper.d(TAG, "end gen codes");
+        LogHelper.d(TAG, "onStopGen()");
     }
 
     @Override
     public BufferData getGenBuffer() {
+        LogHelper.d(TAG, "getGenBuffer()");
         if (null != mCallback) {
             return mCallback.getEncodeBuffer();
         }
+
         return null;
     }
 
     @Override
     public void freeGenBuffer(BufferData buffer) {
+        LogHelper.d(TAG, "freeGenBuffer()");
         if (null != mCallback) {
             mCallback.freeEncodeBuffer(buffer);
         }
+    }
+
+    public interface Listener {
+        void onStartEncode();
+
+        void onEndEncode();
+    }
+
+    public interface Callback {
+        void freeEncodeBuffer(BufferData buffer);
+
+        BufferData getEncodeBuffer();
     }
 }
